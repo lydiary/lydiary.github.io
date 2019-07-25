@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="Ethan Xu">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="2.Add Two Numbers">
+  <meta property="og:description" content>
+  <meta property="og:site_name" content="无知小站">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://zarkar.cn">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>无知小站</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">2.Add Two Numbers</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/lydiary">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:ethanslxu@foxmail.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By Ethan Xu</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-07-24</span>
+            <span class="time">10:12:57</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/算法/">算法</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Leetcode/">#Leetcode</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <p>LeetCode刷题之第二题：Add Two Numbers</p>
+<a id="more"></a>
+
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>You are given two <strong>non-empty</strong> linked lists representing two non-negative integers. The digits are stored in <strong>reverse</strong> order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.</p>
+<p>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
+<p>Example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: (2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</span><br><span class="line">Output: 7 -&gt; 0 -&gt; 8</span><br><span class="line">Explanation: 342 + 465 = 807.</span><br></pre></td></tr></table></figure>
+
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>题目意思是求两个用链表逆序表示的数字的和，可以将相同位的数字<code>x</code>，<code>y</code>以及上一次的进位<code>carry</code>相加，得到的和更新<code>carry</code>并将值保存。</p>
+<h2 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h2><h3 id="1-不改变输入数据的方式"><a href="#1-不改变输入数据的方式" class="headerlink" title="1. 不改变输入数据的方式"></a>1. 不改变输入数据的方式</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">addTwoNumbers</span><span class="params">(ListNode *l1, ListNode *l2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> carry = <span class="number">0</span>;</span><br><span class="line">        <span class="function">ListNode <span class="title">head</span><span class="params">(<span class="number">0</span>)</span></span>;</span><br><span class="line">        ListNode *tail = &amp;head;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (l1 != <span class="literal">nullptr</span> || l2 != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> l1Val = <span class="number">0</span>, l2Val = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span> (l1 != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">                l1Val = l1-&gt;val;</span><br><span class="line">                l1 = l1-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (l2 != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">                l2Val = l2-&gt;val;</span><br><span class="line">                l2 = l2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">auto</span> num = l1Val + l2Val + carry;</span><br><span class="line">            <span class="keyword">auto</span> node = <span class="keyword">new</span> ListNode(num % <span class="number">10</span>);</span><br><span class="line">            carry = num / <span class="number">10</span>;</span><br><span class="line">            tail-&gt;next = node;</span><br><span class="line">            tail = tail-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (carry &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">auto</span> node = <span class="keyword">new</span> ListNode(carry);</span><br><span class="line">            tail-&gt;next = node;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head.next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-改变输入参数的方式：内存占用最少"><a href="#2-改变输入参数的方式：内存占用最少" class="headerlink" title="2. 改变输入参数的方式：内存占用最少"></a>2. 改变输入参数的方式：内存占用最少</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> carry = <span class="number">0</span>;</span><br><span class="line">        ListNode *result = <span class="literal">nullptr</span>, *tail = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (l1 != <span class="literal">nullptr</span> || l2 != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> l1Val = <span class="number">0</span>, l2Val = <span class="number">0</span>;</span><br><span class="line">            ListNode *p = <span class="literal">nullptr</span>;</span><br><span class="line">            <span class="keyword">if</span> (l1 != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">                p = l1;</span><br><span class="line">                l1Val = l1-&gt;val;</span><br><span class="line">                l1 = l1-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (l2 != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">                p = l2;</span><br><span class="line">                l2Val = l2-&gt;val;</span><br><span class="line">                l2 = l2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            p-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">            <span class="keyword">int</span> sum = l1Val + l2Val + carry;</span><br><span class="line">            p-&gt;val = sum % <span class="number">10</span>;</span><br><span class="line">            carry = sum / <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (result == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">                result = p;</span><br><span class="line">                tail = result;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                tail-&gt;next = p;</span><br><span class="line">                tail = tail-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (carry &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            ListNode *node = <span class="keyword">new</span> ListNode(carry);</span><br><span class="line">            <span class="keyword">if</span> (result == <span class="literal">nullptr</span>)</span><br><span class="line">                result = node;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                tail-&gt;next = node;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-递归的方式：内存占用最多，因为递归时还有函数调用栈的空间"><a href="#3-递归的方式：内存占用最多，因为递归时还有函数调用栈的空间" class="headerlink" title="3. 递归的方式：内存占用最多，因为递归时还有函数调用栈的空间"></a>3. 递归的方式：内存占用最多，因为递归时还有函数调用栈的空间</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode *<span class="title">addTwoNumbers</span><span class="params">(ListNode *l1, ListNode *l2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> addTwoNumbers(l1, l2, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function">ListNode* <span class="title">addTwoNumbers</span><span class="params">(ListNode* l1, ListNode* l2, <span class="keyword">int</span> carry)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (l1 == <span class="literal">nullptr</span> &amp;&amp; l2 == <span class="literal">nullptr</span> &amp;&amp; carry == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">auto</span> l1Val = l1 == <span class="literal">nullptr</span> ? <span class="number">0</span> : l1-&gt;val;</span><br><span class="line">        <span class="keyword">auto</span> l2Val = l2 == <span class="literal">nullptr</span> ? <span class="number">0</span> : l2-&gt;val;</span><br><span class="line">        <span class="keyword">auto</span> sum = l1Val + l2Val + carry;</span><br><span class="line">        </span><br><span class="line">        ListNode* node = <span class="keyword">new</span> ListNode(sum % <span class="number">10</span>);</span><br><span class="line">        node-&gt;next = addTwoNumbers(</span><br><span class="line">            l1 == <span class="literal">nullptr</span> ? <span class="literal">nullptr</span> : l1-&gt;next,</span><br><span class="line">            l2 == <span class="literal">nullptr</span> ? <span class="literal">nullptr</span> : l2-&gt;next,</span><br><span class="line">            sum / <span class="number">10</span></span><br><span class="line">        );</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
